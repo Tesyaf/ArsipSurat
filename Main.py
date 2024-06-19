@@ -82,3 +82,42 @@ class ArsipSuratApp:
             self.my_tree.column(col, width=150)
 
         self.my_tree.grid(row=8, column=1, columnspan=7, rowspan=4, padx=20, pady=20, sticky='nsew')
+
+    def merge_sort(self, data, column):
+        if len(data) > 1:
+            mid = len(data) // 2
+            left_half = data[:mid]
+            right_half = data[mid:]
+
+            self.merge_sort(left_half, column)
+            self.merge_sort(right_half, column)
+
+            i = j = k = 0
+
+            while i < len(left_half) and j < len(right_half):
+                if column == 1:  # Sort by perihal
+                    if left_half[i][column].lower() < right_half[j][column].lower():
+                        data[k] = left_half[i]
+                        i += 1
+                    else:
+                        data[k] = right_half[j]
+                        j += 1
+                else:  # Sort by Nomor Surat
+                    if left_half[i][column] < right_half[j][column]:
+                        data[k] = left_half[i]
+                        i += 1
+                    else:
+                        data[k] = right_half[j]
+                        j += 1
+                k += 1
+
+            while i < len(left_half):
+                data[k] = left_half[i]
+                i += 1
+                k += 1
+
+            while j < len(right_half):
+                data[k] = right_half[j]
+                j += 1
+                k += 1
+        return data
