@@ -121,3 +121,30 @@ class ArsipSuratApp:
                 j += 1
                 k += 1
         return data
+
+
+    def sort_by_perihal(self):
+        self.sort_treeview(1)  # Sort by perihal
+
+    def sort_by_nomor_surat(self):
+        self.sort_treeview(0)  # Sort by nomor surat
+
+    def sort_treeview(self, column):
+        if column == 1:  # Sort by perihal
+            data = [(self.my_tree.item(item, 'values')) for item in self.my_tree.get_children()]
+            sorted_data = self.merge_sort(data, column)
+            # Clear existing treeview
+            for item in self.my_tree.get_children():
+                self.my_tree.delete(item)
+            # Insert sorted data
+            for row in sorted_data:
+                self.my_tree.insert('', 'end', values=row)
+        else:  # Sort by Nomor Surat
+            data = [(self.my_tree.item(item, 'values')) for item in self.my_tree.get_children()]
+            sorted_data = self.merge_sort(data, column)
+            # Clear existing treeview
+            for item in self.my_tree.get_children():
+                self.my_tree.delete(item)
+            # Insert sorted data
+            for row in sorted_data:
+                self.my_tree.insert('', 'end', values=row)
