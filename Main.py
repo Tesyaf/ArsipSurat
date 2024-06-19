@@ -33,3 +33,18 @@ class ArsipSuratApp:
         tglLabel.grid(row=5, column=0, padx=50, pady=5)
         pengirimLabel.grid(row=6, column=0, padx=50, pady=5)
         penerimaLabel.grid(row=7, column=0, padx=50, pady=5)
+        
+        # Entry fields
+        self.nomorsuratEntry = Entry(self.root, font=("Times New Roman", 12))
+        self.perihalEntry = Entry(self.root, font=("Times New Roman", 12))
+        self.tglEntry = Entry(self.root, font=("Times New Roman", 12))
+        self.pengirimEntry = Entry(self.root, font=("Times New Roman", 12))
+        self.penerimaEntry = Entry(self.root, font=("Times New Roman", 12))
+        self.searchEntry = Entry(self.root, font=("Times New Roman", 12))
+
+        self.nomorsuratEntry.grid(row=3, column=1, padx=10, pady=5,sticky='ew')
+        self.perihalEntry.grid(row=4, column=1, padx=10, pady=5,sticky='ew')
+        self.tglEntry.grid(row=5, column=1, padx=10, pady=5,sticky='ew')
+        self.pengirimEntry.grid(row=6, column=1, padx=10, pady=5,sticky='ew')
+        self.penerimaEntry.grid(row=7, column=1, padx=10, pady=5,sticky='ew')
+        self.searchEntry.grid(row=3, column=3, padx=10, pady=5, sticky='ew')
