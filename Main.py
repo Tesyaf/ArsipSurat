@@ -148,3 +148,20 @@ class ArsipSuratApp:
             # Insert sorted data
             for row in sorted_data:
                 self.my_tree.insert('', 'end', values=row)
+
+    
+    def add_surat(self):
+        nomor = self.nomorsuratEntry.get()
+        perihal = self.perihalEntry.get()
+        tanggal = self.tglEntry.get()
+        pengirim = self.pengirimEntry.get()
+        penerima = self.penerimaEntry.get()
+
+        if nomor and perihal and tanggal and pengirim and penerima:
+            self.my_tree.insert('', 'end', values=(nomor, perihal, tanggal, pengirim, penerima))
+            with open('arsip_surat.csv', 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([nomor, perihal, tanggal, pengirim, penerima])
+            self.clear_entries()
+        else:
+            messagebox.showwarning("Input Error", "Semua bidang harus diisi!")
