@@ -48,3 +48,28 @@ class ArsipSuratApp:
         self.pengirimEntry.grid(row=6, column=1, padx=10, pady=5,sticky='ew')
         self.penerimaEntry.grid(row=7, column=1, padx=10, pady=5,sticky='ew')
         self.searchEntry.grid(row=3, column=3, padx=10, pady=5, sticky='ew')
+        
+        # Buttons
+        button_width = 20  # Set the width of the buttons
+
+        addButton = Button(self.root, text="Tambah Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.add_surat, width=button_width)
+        addButton.grid(row=7, column=3, padx=10, pady=5, sticky='ew')
+
+        removeButton = Button(self.root, text="Hapus Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.remove_surat, width=button_width)
+        removeButton.grid(row=9, column=0, padx=10, pady=20, sticky='ew')
+
+        editButton = Button(self.root, text="Edit Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.edit_surat, width=button_width)
+        editButton.grid(row=10, column=0, padx=10, pady=20, sticky='ew')
+
+        saveEditButton = Button(self.root, text="Simpan Edit", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.save_edit_surat, width=button_width)
+        saveEditButton.grid(row=11, column=0, padx=10, pady=20, sticky='ew')
+
+        sortPerihalButton = Button(self.root, text="Urutkan berdasarkan Perihal", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.sort_by_perihal)
+        sortPerihalButton.grid(row=15, column=0, padx=10, pady=20, sticky='ew')
+
+        sortNomorSuratButton = Button(self.root, text="Urutkan berdasarkan Nomor Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=self.sort_by_nomor_surat)
+        sortNomorSuratButton.grid(row=15, column=1, padx=10, pady=20, sticky='ew')
+        
+        searchButton = Button(self.root, text="Cari Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=lambda: self.search_treeview(self.searchEntry.get()))  # Assuming searching in the first column
+        searchButton.grid(row=3, column=4, padx=10, pady=5, sticky='ew')
+        self.root.grid_columnconfigure(0, uniform="button")
