@@ -165,3 +165,13 @@ class ArsipSuratApp:
             self.clear_entries()
         else:
             messagebox.showwarning("Input Error", "Semua bidang harus diisi!")
+
+
+     
+    def clear_entries(self):
+        self.nomorsuratEntry.delete(0, END)
+        self.perihalEntry.delete(0, END)
+        self.tglEntry.delete(0, END)
+        self.pengirimEntry.delete(0, END)
+        self.penerimaEntry.delete(0, END)
+
