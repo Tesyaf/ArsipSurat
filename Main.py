@@ -73,3 +73,12 @@ class ArsipSuratApp:
         searchButton = Button(self.root, text="Cari Surat", bg=self.btnColor, fg="white", font=("Times New Roman", 12), command=lambda: self.search_treeview(self.searchEntry.get()))  # Assuming searching in the first column
         searchButton.grid(row=3, column=4, padx=10, pady=5, sticky='ew')
         self.root.grid_columnconfigure(0, uniform="button")
+        
+        # Treeview
+        columns = ['Nomor', 'Perihal', 'Tanggal', 'Pengirim', 'Penerima']
+        self.my_tree = ttk.Treeview(self.root, columns=columns, show='headings')
+        for col in columns:
+            self.my_tree.heading(col, text=col)
+            self.my_tree.column(col, width=150)
+
+        self.my_tree.grid(row=8, column=1, columnspan=7, rowspan=4, padx=20, pady=20, sticky='nsew')
