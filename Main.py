@@ -198,3 +198,17 @@ class ArsipSuratApp:
                     self.my_tree.insert('', 'end', values=row)
         except FileNotFoundError:
             pass
+
+    def edit_surat(self):
+        selected_item = self.my_tree.selection()
+        if selected_item:
+            item_values = self.my_tree.item(selected_item, 'values')
+            self.clear_entries()
+            self.nomorsuratEntry.insert(0, item_values[0])
+            self.perihalEntry.insert(0, item_values[1])
+            self.tglEntry.insert(0, item_values[2])
+            self.pengirimEntry.insert(0, item_values[3])
+            self.penerimaEntry.insert(0, item_values[4])
+            self.editing_item = selected_item
+        else:
+            messagebox.showwarning("Selection Error", "Pilih surat yang ingin diedit!")
