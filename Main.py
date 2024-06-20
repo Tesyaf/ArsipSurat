@@ -175,3 +175,17 @@ class ArsipSuratApp:
         self.pengirimEntry.delete(0, END)
         self.penerimaEntry.delete(0, END)
 
+    def remove_surat(self):
+        selected_item = self.my_tree.selection()
+        if selected_item:
+            item_values = self.my_tree.item(selected_item, 'values')
+            self.my_tree.delete(selected_item)
+            with open('arsip_surat.csv', 'r') as file:
+                rows = list(csv.reader(file))
+            with open('arsip_surat.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                for row in rows:
+                    if row != list(item_values):
+                        writer.writerow(row)
+        else:
+            messagebox.showwarning("Selection Error", "Pilih surat yang ingin dihapus!")
