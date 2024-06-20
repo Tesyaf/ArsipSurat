@@ -244,3 +244,27 @@ class ArsipSuratApp:
                 messagebox.showwarning("Input Error", "Semua bidang harus diisi!")
         else:
             messagebox.showwarning("Edit Error", "Tidak ada surat yang sedang diedit!")
+
+    def search_treeview(self, search_query, column=1):
+        matching_items = []
+        for item in self.my_tree.get_children():
+            item_values = self.my_tree.item(item, 'values')
+            if search_query.lower() in item_values[column].lower():
+                matching_items.append(item_values)
+
+        # Sort matching items by 'No Surat' which is at index 0
+        matching_items.sort(key=lambda x: x[0].lower())
+
+        # Clear existing selections and entries in the treeview
+        for item in self.my_tree.get_children():
+            self.my_tree.delete(item)
+
+        # Insert sorted and filtered items back into the treeview
+        for item_values in matching_items:
+            self.my_tree.insert('', 'end', values=item_values)
+
+# Create the main window
+root =tk.Tk()
+app =ArsipSuratApp(root)
+root.resizable()
+root.mainloop()
