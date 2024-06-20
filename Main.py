@@ -212,3 +212,35 @@ class ArsipSuratApp:
             self.editing_item = selected_item
         else:
             messagebox.showwarning("Selection Error", "Pilih surat yang ingin diedit!")
+
+    def save_edit_surat(self):
+        if self.editing_item:
+            nomor = self.nomorsuratEntry.get()
+            perihal = self.perihalEntry.get()
+            tanggal = self.tglEntry.get()
+            pengirim = self.pengirimEntry.get()
+            penerima = self.penerimaEntry.get()
+
+            if nomor and perihal and tanggal and pengirim and penerima:
+                # Update the selected item in the Treeview
+                self.my_tree.item(self.editing_item, values=(nomor, perihal, tanggal, pengirim, penerima))
+
+                # Read all rows from the CSV
+                with open('arsip_surat.csv', 'r') as file:
+                    rows = list(csv.reader(file))
+
+                # Update the specific row
+                with open('arsip_surat.csv', 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    for row in rows:
+                        if row == list(self.my_tree.item(self.editing_item, 'values')):
+                            writer.writerow([nomor, perihal, tanggal, pengirim, penerima])
+                        else:
+                            writer.writerow(row)
+
+                self.clear_entries()
+                self.editing_item = None
+            else:
+                messagebox.showwarning("Input Error", "Semua bidang harus diisi!")
+        else:
+            messagebox.showwarning("Edit Error", "Tidak ada surat yang sedang diedit!")
