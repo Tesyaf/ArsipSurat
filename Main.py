@@ -189,3 +189,12 @@ class ArsipSuratApp:
                         writer.writerow(row)
         else:
             messagebox.showwarning("Selection Error", "Pilih surat yang ingin dihapus!")
+
+    def load_surat(self):
+        try:
+            with open('arsip_surat.csv', 'r') as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    self.my_tree.insert('', 'end', values=row)
+        except FileNotFoundError:
+            pass
